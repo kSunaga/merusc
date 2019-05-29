@@ -7,17 +7,12 @@ agent = Mechanize.new { |agent|
 
 page = agent.get("https://www.mercari.com/jp/")
 form = page.form
-form['keyword'] = "Playstation4"
+product = { name: "Playstation4", place: 30000 }
+
+form['keyword'] = product[:name]
 
 result = form.click_button
-pp result
 
-#form.q = "PlayStation4"
-
-# result = agent.submit(form, form.buttons.first)
-# puts result
-# contact = page.link_with(text: "採用情報").click
-
-# contact.links.each do |link|
-#   puts link.text
-# end
+result.search('.items-box-body').each do |r|
+   puts ("#{r.css('.items-box-name').inner_text}の価格は#{r.css('.items-box-price').inner_text}です。")
+end
