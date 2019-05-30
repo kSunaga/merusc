@@ -1,5 +1,5 @@
-require 'rubygems'
 require 'mechanize'
+require './slack'
 
 agent = Mechanize.new { |agent|
   agent.user_agent_alias = 'Mac Safari'

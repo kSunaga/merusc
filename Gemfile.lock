@@ -25,6 +25,7 @@ GEM
     nokogiri (1.10.3)
       mini_portile2 (~> 2.4.0)
     ntlm-http (0.1.1)
+    slack-notifier (2.3.2)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.6)
@@ -35,6 +36,7 @@ PLATFORMS
 
 DEPENDENCIES
   mechanize
+  slack-notifier
 
 RUBY VERSION
    ruby 2.5.0p0
