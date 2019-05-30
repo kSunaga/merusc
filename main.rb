@@ -10,7 +10,7 @@ agent = Mechanize.new { |agent|
 
 page = agent.get(SEARCH_URL)
 form = page.form
-product = { name: "Playstation4", min_place: 20000, max_place: 40000 }
+product = { name: "Playstation4 本体", min_place: 20000, max_place: 40000 }
 
 form['keyword'] = product[:name]
 
@@ -29,6 +29,5 @@ def self.get_product_price(element)
 end
 
 result.search('.items-box-body').each do |r|
-   # puts get_href(r)
-  puts ("#{get_product_name(r)}の価格は#{get_product_price(r)}です。")
+  puts ("#{get_product_name(r)}の価格は#{get_product_price(r)}でURLは#{get_href(r)}です。")
 end

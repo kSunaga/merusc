@@ -1,4 +1,4 @@
-module Search
+module Scraping
 
   def initialize(keyword)
     @keyword = keyword
