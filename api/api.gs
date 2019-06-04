@@ -29,9 +29,9 @@ function getResponse() {
 
 function makeKeywordResponse() {
   var response;
-  var values = {};
+  var values = [];
   for(var i=0; i<keywordValues.length; i++) {
-    values[keywordValues[i]] = { "max_place": maxValues[i], "min_place": minValues[i]}
+    values.push({ "keyword": keywordValues[i], "max_place": maxValues[i], "min_place": minValues[i]})
   }
   return {"items": values}
 }
