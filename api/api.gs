@@ -5,7 +5,7 @@ var maxValues = getNotEmptyValues(searchSS.getRange('C2:C').getValues())
 
 
 function doGet(e) {
-    var response = getResponse(e.parameter.type)
+    var response = getResponse()
     var responseText;
     var out = ContentService.createTextOutput();
     var callback = e.parameter.callback;
@@ -23,18 +23,15 @@ function doGet(e) {
     return out;
 }
 
-function getResponse(type) {
-  switch(type) {
-    case "keyword":
-      return keywordValues;
-      break;
-    case "min":
-      return minValues;
-      break;
-    case "max":
-      return maxValues;
-      break;
-    default:
-      return keywordValues;
+function getResponse() {
+  return makeKeywordResponse()
+}
+
+function makeKeywordResponse() {
+  var response;
+  var values = {};
+  for(var i=0; i<keywordValues.length; i++) {
+    values[keywordValues[i]] = { "max_place": maxValues[i], "min_place": minValues[i]}
   }
+  return {"items": values}
 }
