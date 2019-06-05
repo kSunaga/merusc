@@ -1,5 +1,4 @@
 require 'httpclient'
-require 'pry-byebug'
 
 module Api
 
