@@ -20,7 +20,7 @@ module Scraping
       form['keyword'] = p["keyword"]
       result = form.click_button
       result.search('.items-box-body').each do |r|
-        results.push("#{get_product_name(r)}の価格は#{get_product_price(r)}です。") if sold_out?(r) && just?(r, p)
+        results.push("#{get_product_name(r)}の価格は#{get_product_price(r)}でURLは#{get_href(r)}です。") if sold_out?(r) && just?(r, p)
       end
     end
     results

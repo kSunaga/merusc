@@ -1,4 +1,6 @@
 require './scraping'
+require './slack'
 
-result = Scraping.getResponse
-puts result
+def lambda_handler(event:, context:)
+  Slack.post_message(Scraping.getResponse)
+end
