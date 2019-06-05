@@ -35,3 +35,19 @@ function makeKeywordResponse() {
   }
   return {"items": values}
 }
+
+function doPost(e) {
+
+  var data = JSON.parse(e.postData.contents);
+  var keyword = data.keyword;
+  var min_place = data.min_place;
+  var max_place = data.max_place;
+  var response = ContentService.createTextOutput();
+
+  if(keyword && min_place && max_place) {
+    searchSS.appendRow([keyword, min_place, max_place]);
+    return response.setContent(JSON.stringify({message: "成功"}))
+  }else{
+    return response.setContent(JSON.stringify({message: "失敗"}))
+  }
+}
