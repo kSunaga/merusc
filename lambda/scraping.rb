@@ -23,6 +23,14 @@ module Scraping
     element.delete('¥').delete(',').to_i
   end
 
+  def self.sold_out?(element)
+    element.parent.search('.item-sold-out-badge')
+  end
+
+  def self.just?(element, product)
+    product['min_place'] < get_product_price(element) && get_product_price(element) < product['max_place']
+  end
+
   def self.getResponse
     agent = Mechanize.new {|agent|
       agent.user_agent_alias = USER_AGENT
@@ -37,9 +45,7 @@ module Scraping
       result = form.click_button
 
       result.search('.items-box-body').each do |r|
-        if p["min_place"] < get_product_price(r) && get_product_price(r) < p["max_place"]
-          results.push("#{get_product_name(r)}の価格は#{get_product_price(r)}です。")
-        end
+        results.push("#{get_product_name(r)}の価格は#{get_product_price(r)}です。") if sold_out?(r) && just?(r, p)
       end
     end
     results
