@@ -1,10 +1,11 @@
 require 'mechanize'
 require './api'
-require './slack'
-require './scraping'
+require 'yaml'
+
+setting = YAML.load_file('./settings.yml')
 
 USER_AGENT = 'Mac Safari'.freeze
-SEARCH_URL = 'https://www.mercari.com/jp/'.freeze
+SEARCH_URL = setting['search_url'].freeze
 
 module Scraping
 

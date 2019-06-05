@@ -1,8 +1,10 @@
 require 'httpclient'
+require 'yaml'
+
+setting = YAML.load_file('./settings.yml')
+ENDPOINT = setting['endpoint'].freeze
 
 module Api
-
-  END_POINT = 'https://script.google.com/macros/s/AKfycbzUl1CRyPPoasVePuJ-J8GClfXNS2lqS1k1PptdwCEcmez4dQ3N/exec'.freeze
 
   def self.getKeywords
     client = HTTPClient.new

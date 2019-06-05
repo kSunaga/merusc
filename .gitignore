@@ -1,3 +1,5 @@
 /.idea/
 /lambda/vendor/
 /.bundle/
+/lambda/.bundle/
+/lambda/settings.yml
